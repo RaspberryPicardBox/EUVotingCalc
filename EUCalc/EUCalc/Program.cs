@@ -7,10 +7,6 @@ namespace EUCalc
     {
         static void Main(string[] args)
         {
-            int Yes = 0;
-            int No = 0;
-            int Abstain = 0;
-
             List<Country> Countries = new List<Country>();
 
             string[] content = System.IO.File.ReadAllLines(@"..\..\..\countryList.txt");
@@ -20,6 +16,12 @@ namespace EUCalc
                 Countries.Add(new Country(words[0], Double.Parse(words[1])));
             }
 
+            double YesTotal = 0;
+            double NoTotal = 0;
+            double AbstainTotal = 0;
+            int Yes = 0;
+            int No = 0;
+            int Abstain = 0;
             int total = Countries.Count;
 
             foreach (Country country in Countries)
@@ -29,6 +31,7 @@ namespace EUCalc
                 if (input == "Y")
                 {
                     country.abstain = true;
+                    AbstainTotal += country.population;
                     Abstain += 1;
                 }
                 else if(input == "N")
@@ -48,27 +51,26 @@ namespace EUCalc
                     if (input == "Y")
                     {
                         country.vote = true;
+                        YesTotal += country.population;
                         Yes += 1;
                     }
                     else if (input == "N")
                     {
                         country.vote = false;
+                        NoTotal += country.population;
                         No += 1;
                     }
                     else
                     {
                         Console.WriteLine($"{input} is not a valid answer. Defaulting to Y...");
                         country.vote = true;
+                        YesTotal += country.population;
                         Yes += 1;
                     }
                 }
 
             }
-
-            int percentYes = (total / 100) * Yes;
-            int percentNo = (total / 100) * No;
-            int percentAbstain = (total / 100) * Abstain;
-            Console.WriteLine($"Out of total {total}, {Yes} were voted for, giving {percentYes}%. {No} were voted against, giving {percentNo}%, and {Abstain} abstained giving {percentAbstain}%.");
+            Console.WriteLine($"Out of total {total}, {Yes} were voted for, giving {YesTotal}%. {No} were voted against, giving {NoTotal}%, and {Abstain} abstained giving {AbstainTotal}%.");
         }
     }
 }
