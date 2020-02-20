@@ -54,12 +54,14 @@ namespace EUCalc
                         country.vote = true;
                         YesTotal += country.population;
                         Yes += 1;
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
                     }
                     else if (input == "N")
                     {
                         country.vote = false;
                         NoTotal += country.population;
                         No += 1;
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
                     }
                     else
                     {
@@ -67,11 +69,23 @@ namespace EUCalc
                         country.vote = true;
                         YesTotal += country.population;
                         Yes += 1;
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
                     }
+
+                    
                 }
 
             }
             Console.WriteLine($"Out of total {total}, {Yes} were voted for, giving {YesTotal}%. {No} were voted against, giving {NoTotal}%, and {Abstain} abstained giving {AbstainTotal}%.");
+
+            if (YesTotal >= 65 && Yes >= 15)
+            {
+                Console.WriteLine("Final result - Approved");
+            }
+            else
+            {
+                Console.WriteLine("Final result - Rejected ");
+            }
         }
     }
 }
