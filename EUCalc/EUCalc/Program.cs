@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 
+//Made by Michael Boyce, Lewis Parkings and James Lumsden
+
 namespace EUCalc
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<Country> Countries = new List<Country>();
-
-            string[] content = System.IO.File.ReadAllLines(@"..\..\..\countryList.txt");
-            foreach (string line in content)
+            static List<Country> makeCountries()
             {
-                string[] words = line.Split(",");
-                Countries.Add(new Country(words[0], Double.Parse(words[1])));
+                List<Country> Countries = new List<Country>();
+
+                string[] content = System.IO.File.ReadAllLines(@"..\..\..\countryList.txt");
+                foreach (string line in content)
+                {
+                    string[] words = line.Split(",");
+                    Countries.Add(new Country(words[0], Double.Parse(words[1])));
+                }
+
+                return Countries;
             }
+
+            List<Country> Countries = makeCountries();
 
             double YesTotal = 0;
             double NoTotal = 0;
