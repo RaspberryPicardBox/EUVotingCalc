@@ -33,6 +33,7 @@ namespace EUCalc
                     country.abstain = true;
                     AbstainTotal += country.population;
                     Abstain += 1;
+                    Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
                 }
                 else if(input == "N")
                 {

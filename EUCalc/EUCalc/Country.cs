@@ -19,12 +19,7 @@ namespace EUCalc
         public double population
         {
             get { return _population; }
-            set { 
-                if (value > 0)
-                {
-                    population = value;
-                }
-                                      }
+            set { _population = value; }
         }
         public bool abstain
         {
