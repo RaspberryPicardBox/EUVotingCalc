@@ -26,14 +26,14 @@ namespace EUCalc
 
             foreach (Country country in Countries)
             {
-                Console.WriteLine($"For {country.name}, would you like to abstain? (Y/N)");
+                Console.WriteLine($"For {country.name}, would you like to abstain? (Y/N) \n");
                 string input = Console.ReadLine().ToUpper();
                 if (input == "Y")
                 {
                     country.abstain = true;
                     AbstainTotal += country.population;
                     Abstain += 1;
-                    Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
+                    Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}% \n");
                 }
                 else if(input == "N")
                 {
@@ -41,42 +41,48 @@ namespace EUCalc
                 }
                 else
                 {
-                    Console.WriteLine($"{input} is not a valid answer. Defaulting to N...");
+                    Console.WriteLine($"{input} is not a valid answer. Defaulting to N... \n");
                     country.abstain = false;
                 }
 
                 if (country.abstain == false)
                 {
-                    Console.WriteLine($"Would you like to vote for {country.name}? (Y/N)");
+                    Console.WriteLine($"Would you like to vote for {country.name}? (Y/N) \n");
                     input = Console.ReadLine().ToUpper();
                     if (input == "Y")
                     {
                         country.vote = true;
                         YesTotal += country.population;
                         Yes += 1;
-                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}% \n");
                     }
                     else if (input == "N")
                     {
                         country.vote = false;
                         NoTotal += country.population;
                         No += 1;
-                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}% \n");
                     }
                     else
                     {
-                        Console.WriteLine($"{input} is not a valid answer. Defaulting to Y...");
+                        Console.WriteLine($"{input} is not a valid answer. Defaulting to Y... \n");
                         country.vote = true;
                         YesTotal += country.population;
                         Yes += 1;
-                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}%");
+                        Console.WriteLine($"Abstained. Current percentages are: Yes - {YesTotal}%, No - {NoTotal}%, Abstain - {AbstainTotal}% \n");
                     }
-
-                    
+                    if (YesTotal >= 65 && Yes >= 15)
+                    {
+                        Console.WriteLine("Current final result - Approved \n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Current final result - Rejected \n");
+                    }
                 }
 
             }
-            Console.WriteLine($"Out of total {total}, {Yes} were voted for, giving {YesTotal}%. {No} were voted against, giving {NoTotal}%, and {Abstain} abstained giving {AbstainTotal}%.");
+            Console.WriteLine($"Out of total {total}, {Yes} were voted for, giving {YesTotal}%. {No} were voted against, giving {NoTotal}%, and {Abstain} abstained giving {AbstainTotal}%. \n");
 
             if (YesTotal >= 65 && Yes >= 15)
             {
